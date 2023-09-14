@@ -1,0 +1,13 @@
+<div>
+    <h2>Welcome to ShopShare</h2>
+    <form (ngSubmit)="connectToLink()" #linkForm="ngForm">
+      <div class="form-group">
+        <label for="passcode">Enter Passcode:</label>
+        <input type="text" id="passcode" [(ngModel)]="passcode" name="passcode" required />
+      </div>
+      <button type="submit">Connect to Link</button>
+    </form>
+    <p>Or</p>
+    <button (click)="generateLink()">Generate New Link</button>
+  </div>
+  

@@ -1,0 +1,15 @@
+<div>
+    <h2>Item List</h2>
+    <ul>
+      <li *ngFor="let item of items">
+        <ng-container *ngIf="item && item.id">
+            <div>
+                <input type="checkbox" [(ngModel)]="item.completed" (change)="toggleItemCompletion(item)" />
+                <strong>{{ item.name }}</strong>
+              </div>
+              <button (click)="deleteItem(item.id)">Delete</button>
+        </ng-container>
+      </li>
+    </ul>
+</div>
+  

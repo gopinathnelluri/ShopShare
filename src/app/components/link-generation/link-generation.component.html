@@ -1,0 +1,14 @@
+<div>
+    <h2>Welcome to ShopShare</h2>
+    <form (ngSubmit)="generateLink()" #linkForm="ngForm">
+        <div class="form-group">
+            <label for="linkname">Enter Link Name:</label>
+            <input type="text" id="linkname" [(ngModel)]="linkname" name="linkname" placeholder="AndyShoppingList" required />
+        </div>
+        <div class="form-group">
+            <label for="passcode">Enter Passcode:</label>
+            <input type="text" id="passcode" [(ngModel)]="passcode" name="passcode" placeholder="*****" required />
+        </div>
+        <button type="submit">Generate New Link</button>
+    </form>
+</div>
