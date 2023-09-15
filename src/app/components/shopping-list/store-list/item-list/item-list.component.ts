@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Item } from 'src/app/models/item.model';
 import { FirebaseService } from 'src/app/services/firebase.service';
 
@@ -19,6 +19,9 @@ export class ItemListComponent implements OnInit {
   @Input()
   storeID: string = "";
 
+  @Output() 
+  totalPendingItemsEvent = new EventEmitter<any>();
+
   items: Item[] = []; // Array to store the list of items
 
   constructor(private firebaseService: FirebaseService) {}
@@ -31,6 +34,15 @@ export class ItemListComponent implements OnInit {
   loadItems(): void {
     this.firebaseService.getItems(this.shopListID, this.storeID).subscribe((items) => {
       this.items = items;
+      if(this.items && this.items.length > 0){
+        let totalPendingItems = 0;
+        this.items.forEach((tempItem) => {
+          if(!tempItem.completed){
+            totalPendingItems += 1;
+          }
+        });
+        this.totalPendingItemsEvent.emit(totalPendingItems);
+      }
     });
   }
 
@@ -44,13 +56,8 @@ export class ItemListComponent implements OnInit {
   }
 
   toggleItemCompletion(item: Item): void {
-    console.log(item);
-
-    // Toggle the completion status
-    //item.completed = !item.completed;
-    console.log(item);
-
-    // Update the item in Firebase
-    this.firebaseService.updateItemStatus(this.shopListID, this.storeID, item);
+    setTimeout(()=> {
+      this.firebaseService.updateItemStatus(this.shopListID, this.storeID, item);
+    }, 1000);
   }
 }

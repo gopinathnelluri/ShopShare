@@ -12,6 +12,8 @@ export class StoreListComponent implements OnInit {
   @Input()
   shopListID: string = "";
 
+  pendingItemsCountObj:any = {};
+
   stores: Store[] = []; // Array to store the list of stores
 
   constructor(private firebaseService: FirebaseService) {}
@@ -34,5 +36,10 @@ export class StoreListComponent implements OnInit {
     this.firebaseService.deleteStore(this.shopListID, storeId).then(() => {
       this.loadStores(); // Reload the list of stores after deleting
     });
+  }
+
+  totalPendingItems(storeId: string, event: any){
+    console.log(storeId, event);
+    this.pendingItemsCountObj[storeId] = event;
   }
 }
