@@ -1,58 +1,27 @@
+<svg viewBox="0 0 0 0" style="position: absolute; z-index: -1; opacity: 0;">
+  <defs>
+    <linearGradient id="boxGradient" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="25" y2="25">
+      <stop offset="0%" stop-color="#27FDC7" />
+      <stop offset="100%" stop-color="#0FC0F5" />
+    </linearGradient>
+    <linearGradient id="lineGradient">
+      <stop offset="0%" stop-color="#0FC0F5" />
+      <stop offset="100%" stop-color="#27FDC7" />
+    </linearGradient>
+    <path id="todo__line" stroke="url(#lineGradient)" d="M21 12.3h168v0.1z"></path>
+    <path id="todo__box" stroke="url(#boxGradient)"
+      d="M21 12.7v5c0 1.3-1 2.3-2.3 2.3H8.3C7 20 6 19 6 17.7V7.3C6 6 7 5 8.3 5h10.4C20 5 21 6 21 7.3v5.4"></path>
+    <path id="todo__check" stroke="url(#boxGradient)" d="M10 13l2 2 5-5"></path>
+    <circle id="todo__circle" cx="13.5" cy="12.5" r="10"></circle>
+  </defs>
+</svg>
+
 <div role="list" class="divide-y divide-gray-100">
   <ng-container *ngFor="let store of stores">
     <ng-container *ngIf="store.name && store.id">
-      <div>
-        <div class="flex justify-between gap-x-6 py-5">
-          <div class="flex min-w-0 gap-x-4">
-            <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="../../../../assets/img/store.png" alt="">
-            <div class="min-w-0 flex-auto">
-              <p class="text-sm font-semibold leading-6 text-gray-900">{{ store.name }}</p>
-              <div class="mt-1 flex items-center gap-x-1.5">
-                <ng-container *ngIf="pendingItemsCountObj[store.id]">
-                  <div class="flex-none rounded-full bg-emerald-500/20 p-1">
-                    <div class="h-1.5 w-1.5 rounded-full bg-emerald-500"></div>
-                  </div>
-                  <p class="text-xs leading-5 text-gray-500">{{pendingItemsCountObj[store.id]}} pending items</p>
-                </ng-container>
-                <ng-container *ngIf="!pendingItemsCountObj[store.id]">
-                  <div class="flex-none rounded-full bg-gray-400/20 p-1">
-                    <div class="h-1.5 w-1.5 rounded-full bg-gray-400"></div>
-                  </div>
-                  <p class="text-xs leading-5 text-gray-500">No pending items</p>
-                </ng-container>
-              </div>
-              <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-                <!-- Additional content at the bottom with parent width -->
-              </div>
-            </div>
-          </div>
-          <div class="shrink-0 sm:flex sm:flex-col sm:items-end">
-            <p class="text-sm leading-6 text-gray-900">
-              <button (click)="deleteStore(store.id)">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                  stroke="currentColor" class="w-6 h-6">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
-                </svg>
-              </button>
-
-              <button (click)="deleteStore(store.id)">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
-                </svg>                
-              </button>
-            </p>
-          </div>
-        </div>
-        <div style="padding-left: 50px;" class="p-2 rounded-lg">
-          <!-- Your additional content here -->
-          <app-item-list (totalPendingItemsEvent)="totalPendingItems(store.id, $event)" [shopListID]="shopListID" [storeID]="store.id" [storeName]="store.name"></app-item-list>
-          <app-add-item [shopListID]="shopListID" [storeID]="store.id" [storeName]="store.name"></app-add-item>
-        </div>
-      </div>
+      <app-store [shopListID]="shopListID" [store]="store"></app-store>
     </ng-container>
   </ng-container>
-
 </div>
 
 <!-- 

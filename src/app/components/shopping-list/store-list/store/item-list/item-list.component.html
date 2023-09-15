@@ -1,0 +1,10 @@
+<div *ngFor="let item of items">
+  <ng-container *ngIf="item && item.id">
+    <div class="todo-container">
+      <app-item [shopListID]="shopListID" [storeID]="storeID" [item]="item"></app-item>
+      <!--
+        <button (click)="deleteItem(item.id)">Delete</button>
+        -->
+    </div>
+  </ng-container>
+</div>

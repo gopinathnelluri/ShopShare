@@ -14,9 +14,6 @@ export class ItemListComponent implements OnInit {
   shopListID: string = "";
 
   @Input()
-  storeName: string = "";
-
-  @Input()
   storeID: string = "";
 
   @Output() 
@@ -46,18 +43,12 @@ export class ItemListComponent implements OnInit {
     });
   }
 
-  // You can add other methods for managing items (e.g., delete, update) here
-
-  // Example of a method to delete an item
+  
+  // Method to delete an item
   deleteItem(itemId: string): void {
     this.firebaseService.deleteItem(this.shopListID, this.storeID, itemId).then(() => {
       this.loadItems(); // Reload the list of items after deleting
     });
   }
 
-  toggleItemCompletion(item: Item): void {
-    setTimeout(()=> {
-      this.firebaseService.updateItemStatus(this.shopListID, this.storeID, item);
-    }, 1000);
-  }
 }

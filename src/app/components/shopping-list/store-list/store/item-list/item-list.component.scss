@@ -1,0 +1,27 @@
+/* Style the parent container */
+.todo-container {
+    position: relative;
+    width: 100%; /* Adjust as needed */
+    transition: left 0.3s ease; /* Add a sliding transition */
+  }
+  
+  /* Initially hide the options to the left */
+  .todo__options {
+    position: absolute;
+    top: 0;
+    left: -100%; /* Move the options outside the visible area */
+    width: 100%;
+    height: 100%;
+    background-color: #fff; /* Set your background color */
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Place the buttons on the right */
+    overflow: hidden; /* Hide overflow content */
+  }
+  
+  /* Style the delete and edit buttons as needed */
+  .todo__options button {
+    /* Add your button styles */
+    margin-left: 10px; /* Adjust spacing between buttons */
+  }
+  
